@@ -1,0 +1,19 @@
+---
+- hosts: all
+  become: yes
+  vars:
+    - conf_path: "/etc/ssh/sshd_config"
+  tasks:
+    - name: modify ssh_config
+      replace:
+        dest: "{{ conf_path }}"
+        regexp: "^PasswordAuthentication yes"
+        replace: "PasswordAuthentication no"
+      notify: restart sshd
+
+  handlers:
+    - name: restart sshd
+      systemd:
+        state: restarted
+        name: sshd
+
