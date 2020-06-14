@@ -1,0 +1,7 @@
+---
+- name: Install apache2 (RedHat).
+  yum: name=httpd
+  when: "ansible_os_family == 'RedHat'"
+
+- name: start httpd
+  service: name=httpd enabled=yes state=started

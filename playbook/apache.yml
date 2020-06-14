@@ -1,0 +1,8 @@
+---
+#
+# apache.yml
+#
+- hosts: web
+  become: yes
+  roles:
+    - web
