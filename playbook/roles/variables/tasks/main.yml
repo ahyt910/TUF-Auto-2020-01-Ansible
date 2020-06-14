@@ -1,0 +1,20 @@
+- set_fact:
+    companies:
+      - name: APCommunications
+        country: Japan
+        industry: IT
+        is_multinational: no
+      - name: Amazon
+        country: USA
+        industry: IT
+        is_multinational: yes
+
+- debug:
+    msg: "{{item.name}}は{{item.country}}に本社がある多国籍{{item.industry}}会社です。"
+  when: item.is_multinational
+  with_items: "{{companies}}"
+
+- debug:
+    msg: "{{item.name}}は{{item.country}}に本社がある{{item.industry}}会社です。"
+  when: not item.is_multinational
+  with_items: "{{companies}}"

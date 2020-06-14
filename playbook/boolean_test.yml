@@ -1,0 +1,21 @@
+---
+- hosts: localhost
+  gather_facts: no
+  vars:
+    booleans:
+      yes_string: yes
+      no_string: no
+      true_string: true
+      false_string: false
+      other_string: hello
+      not_empty_list: [1, 2, 3]
+      empty_list: []
+      not_empty_dict: {"key": "value"}
+      empty_dict: {}
+      zero_int: 0
+      other_int: 1
+  tasks:
+    - debug:
+        msg: "{{ item.key }}は{{ item.value | bool }}"
+      with_dict: "{{ booleans }}"
+
